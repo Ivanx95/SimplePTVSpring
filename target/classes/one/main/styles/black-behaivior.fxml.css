@@ -1,0 +1,46 @@
+
+* {
+    -fx-main-color: #afafaf;
+    -fx-main-color-hovered: #9e9e9e;
+    -fx-main-color-clicked: #919191;
+    -fx-main-color-border: #4e4343;
+    -fx-second-color:rgb(224, 224, 224);
+    -fx-bkgnd:#fff;
+  }
+
+  
+  
+
+
+.background {
+   -fx-background-color:-fx-bkgnd;     
+   -fx-border-color: -fx-main-color-border;
+}
+
+
+
+.footer{
+     -fx-background-color: -fx-second-color;  
+     -fx-effect: dropshadow(two-pass-box , rgb(180, 180, 180), 15, 0.0 , 0, -5);     
+}
+
+
+
+.button{
+   -fx-background-color: -fx-main-color;  
+}
+
+.button.main .label{
+	    -fx-text-fill: white;
+}
+ 
+
+.button.main:hover{
+    -fx-background-color: -fx-main-color-hovered; 
+ }
+
+ 
+
+.button.main:pressed{
+    -fx-background-color: -fx-main-color-clicked; 
+ }

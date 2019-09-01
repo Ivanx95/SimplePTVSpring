@@ -47,8 +47,9 @@ public class PanelController  implements Initializable{
 		// TODO Auto-generated method stub
 	
 		newButton.setOnAction(e->{
-			paymentController.pay();
-			saleService.find(2l);
+		 StageController controlr=	view.createController(Modality.APPLICATION_MODAL);
+		 controlr.getStage().showAndWait();
+		 
 		});
 	}
 	

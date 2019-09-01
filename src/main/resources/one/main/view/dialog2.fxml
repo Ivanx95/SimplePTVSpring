@@ -9,7 +9,7 @@
 
 <!--<?import one.main.view.custom.WindowDownMenuController   ?>-->
 
-<VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="one.main.controller.Dialog1Controller">
+<VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="one.main.controller.Dialog2Controller">
    <stylesheets>
       <URL value="@../styles/font-behaivior.fxml.css" />
       <URL value="@../styles/miverva.fxml.css" />
@@ -20,7 +20,7 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <WindowDownButton fx:id="btn1" text="%view.dialog1.menubtn.salir">
+                  <WindowDownButton fx:id="btn1" text="%view.dialog2.menubtn.salir">
                      <image>
                         <Image url="@../../../images/close.png" />
                      </image></WindowDownButton>
@@ -31,7 +31,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <WindowDownButton fx:id="btn2" text="%view.dialog1.menubtn.1">
+                  <WindowDownButton fx:id="btn2" text="%view.dialog2.menubtn.1">
                      <image>
                         <Image url="@../../../images/add.png" />
                      </image></WindowDownButton>

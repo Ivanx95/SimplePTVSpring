@@ -12,12 +12,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.stage.Modality;
 import one.main.base.StageController;
-import one.main.view.Dialog2View;
+import one.main.view.Dialog1View;
 import one.main.view.custom.window.WindowDownButton;
 import one.main.view.custom.window.WindowDownMenuController;
 
 @FXMLController
-public class Dialog1Controller extends StageController implements Initializable{
+public class Dialog2Controller extends StageController implements Initializable{
 
 	
 	
@@ -32,7 +32,7 @@ public class Dialog1Controller extends StageController implements Initializable{
 	private WindowDownButton btn3;
 	
 	@Autowired
-	Dialog2View view;
+	Dialog1View view;
 	
 	@FXML
 	@Override
@@ -43,7 +43,7 @@ public class Dialog1Controller extends StageController implements Initializable{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				Dialog1Controller.this.close();
+				Dialog2Controller.this.close();
 				
 			}
 		});
@@ -57,8 +57,15 @@ public class Dialog1Controller extends StageController implements Initializable{
 			}
 		});
 		
-
-
+		btn3.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				 StageController controlr=	view.createController(Modality.APPLICATION_MODAL);
+				 controlr.getStage().showAndWait();
+				 
+			}
+		});
 	}
 	
 	

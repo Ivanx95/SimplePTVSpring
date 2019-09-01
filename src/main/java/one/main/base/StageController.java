@@ -49,7 +49,13 @@ public abstract class StageController {
 		return stage;
 	}
 	
-	
+	protected void close() {
+		if(this.stage!=null) {
+			this.stage.close();
+		}else {
+			
+		}
+	}
 	
 	
 	

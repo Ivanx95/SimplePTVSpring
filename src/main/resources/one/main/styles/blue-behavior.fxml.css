@@ -1,0 +1,40 @@
+
+* {
+    -fx-main-color: #89fade;
+	-fx-main-color-hovered: #6ac4ad;
+	-fx-main-color-clicked: #71c9b3;
+	-fx-second-color:#7da4ff;
+	-fx-bkgnd:#f5f5f5;
+  }
+
+
+  .background {
+	-fx-background-color:-fx-bkgnd;
+  }
+
+
+
+.footer{
+	 -fx-background-color: -fx-second-color;  
+	 fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+
+.button.main .label{
+	    -fx-text-fill
+	    -fx-text-fill: #401418;
+}
+
+.button{
+   -fx-background-color: -fx-main-color;  
+}
+
+
+
+.button.main:hover{
+    -fx-background-color: -fx-main-color-hovered; 
+ }
+ 
+ .button.main:pressed{
+    -fx-background-color: -fx-main-color-clicked; 
+ }
