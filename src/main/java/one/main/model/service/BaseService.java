@@ -6,5 +6,6 @@ public interface BaseService<T,I> {
 	
 	T find(I identifier);
 	
+	T create();
 	Collection<T> getAll();
 }

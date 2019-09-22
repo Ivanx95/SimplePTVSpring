@@ -482,6 +482,7 @@ public abstract class JavaFxView implements ApplicationContextAware {
 	        	StageController controller=((StageController)obj);
 	        	controller.setStage(newStage);
 	        	controller.setScene(newScene);
+	        	controller.onShow();
 				return controller;
 				
 			}else {

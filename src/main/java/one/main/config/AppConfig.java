@@ -51,11 +51,5 @@ public class AppConfig {
 	}
 	
 	
-	@Bean
-	public StageController getStageController() {
-		return new StageController() {
-			
-		};
-				
-	}
+	
 }

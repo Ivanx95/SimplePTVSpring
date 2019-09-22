@@ -6,3 +6,24 @@
    -fx-font-size: 11pt;
 }
 
+.label {
+	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+   
+}
+
+
+.is-15{
+	-fx-font-size: 15pt;
+}
+
+.is-17{
+	-fx-font-size: 17pt;
+}
+
+.is-19{
+	-fx-font-size: 19pt;
+}
+
+.is-bold{
+	-fx-font-weight: bold;
+}

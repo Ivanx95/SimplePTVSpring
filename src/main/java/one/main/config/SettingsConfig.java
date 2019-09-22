@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+import one.main.components.CreditCardController;
 import one.main.components.PayMethodController;
 import one.main.components.aop.MonitoringAndExceptionAspect;
 import one.main.model.service.SaleService;
@@ -24,7 +25,8 @@ public class SettingsConfig {
 	@Bean
 	public PayMethodController creditCartImplementation() {
 		try {
-			return loader.<PayMethodController>getInstance("C:\\Users\\storm\\Desktop\\jarToGet.jar");
+			return loader.<PayMethodController>getInstance("/home/jaisen/eclipse-workspace/SimplePTVSpring/src/main/resources/CreditCard.jar");
+//			return new CreditCard();
 		} catch (ClassNotFoundException | MalformedURLException | InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

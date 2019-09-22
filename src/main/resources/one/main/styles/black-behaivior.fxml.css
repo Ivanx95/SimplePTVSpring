@@ -1,8 +1,8 @@
 
 * {
-    -fx-main-color: #afafaf;
-    -fx-main-color-hovered: #9e9e9e;
-    -fx-main-color-clicked: #919191;
+    -fx-main-color: white;
+    -fx-main-color-hovered: #f2f2f2;
+    -fx-main-color-clicked: #e6e6e6;
     -fx-main-color-border: #4e4343;
     -fx-second-color:rgb(224, 224, 224);
     -fx-bkgnd:#fff;
@@ -31,7 +31,7 @@
 }
 
 .button.main .label{
-	    -fx-text-fill: white;
+	    -fx-text-fill: #5e5e5e;
 }
  
 

@@ -3,12 +3,14 @@ package one.main.support;
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.application.Platform;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import one.main.base.StageController;
@@ -212,8 +214,18 @@ public abstract class NeoJavaxApplicationSupport extends Application {
 //        GUIState.setHostServices(this.getHostServices());
         final Stage splashStage = new Stage(StageStyle.TRANSPARENT);
 
+//        Screen screen = Screen.getPrimary();
+//        Rectangle2D bounds = screen.getVisualBounds();
+
+//        splashStage.setX(bounds.getMinX());
+//        splashStage.setY(bounds.getMinY());
+//        splashStage.setWidth(bounds.getWidth());
+//        splashStage.setHeight(bounds.getHeight());
+//        
+
 		if (NeoJavaxApplicationSupport.splashScreen.visible()) {
 			final Scene splashScene = new Scene(splashScreen.getParent(), Color.TRANSPARENT);
+//			splashScreen.getSplashProgressBar().setPrefWidth(bounds.getWidth());
 			splashStage.setScene(splashScene);
             splashStage.getIcons().addAll(defaultIcons);
             splashStage.initStyle(StageStyle.TRANSPARENT);
@@ -222,6 +234,13 @@ public abstract class NeoJavaxApplicationSupport extends Application {
 		}
 
         splashIsShowing.complete(() -> {
+        	
+        	try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             showInitialView();
             if (NeoJavaxApplicationSupport.splashScreen.visible()) {
                 splashStage.hide();

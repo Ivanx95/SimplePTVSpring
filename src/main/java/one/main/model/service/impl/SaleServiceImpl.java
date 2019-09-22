@@ -1,5 +1,7 @@
 package one.main.model.service.impl;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -17,13 +19,21 @@ public class SaleServiceImpl  implements SaleService{
 	public Sale find(Long identifier) {
 		
 		
-		return new Sale();
+		return new Sale(10L, "Ivan", "Yuni", LocalDateTime.now(), new BigDecimal(100));
 	}
 
 	@Override
 	public Collection<Sale> getAll() {
 		// TODO Auto-generated method stub
-		return Arrays.asList(new Sale());
+		return Arrays.asList(new Sale(10L, "Ivan", "Yuni", LocalDateTime.now(), new BigDecimal(100)));
+	}
+
+	@Override
+	@LogExecutionTime
+	public Sale create() {
+		// TODO Auto-generated method stub
+
+		return new Sale(10L, "Ivan", "Yuni", LocalDateTime.now(), new BigDecimal(100));
 	}
 
 }

@@ -20,7 +20,7 @@ public class MonitoringAndExceptionAspect {
 		Object proceed = null;
 
 		try {
-			joinPoint.proceed();
+			proceed=	joinPoint.proceed();
 			long executionTime = System.currentTimeMillis() - start;
 
 			System.out.println(joinPoint.getSignature() + " executed in " + executionTime + "ms");
@@ -33,7 +33,7 @@ public class MonitoringAndExceptionAspect {
 	}
 	
 	private void createError(Throwable throwable) {
-		 Alert alert = new Alert(AlertType.ERROR, "Ha sucedido un error, favor de comunicarse con soporte técnico: " + throwable.getMessage());
+		 Alert alert = new Alert(AlertType.ERROR, "Ha sucedido un error, favor de comunicarse con soporte tï¿½cnico: " + throwable.getMessage());
 		 
 		 Platform.runLater(()->alert.show());
 	}

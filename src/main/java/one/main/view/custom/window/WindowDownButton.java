@@ -2,6 +2,7 @@ package one.main.view.custom.window;
 
 import java.io.IOException;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -43,6 +44,7 @@ public class WindowDownButton extends VBox{
 		} catch (IOException exception) {
 			throw new RuntimeException(exception);
 		}
+		
 	}
 
 	public final Image getImage() {
@@ -73,6 +75,20 @@ public class WindowDownButton extends VBox{
 
 	public final void setOnAction(EventHandler<ActionEvent> value) {
 		mainBtn.setOnAction(value);
+		
+		
+	}
+
+	public final void setMnemonicParsing(boolean value) {
+		mainBtn.setMnemonicParsing(value);
+	}
+
+	public final boolean isMnemonicParsing() {
+		return mainBtn.isMnemonicParsing();
+	}
+
+	public final BooleanProperty mnemonicParsingProperty() {
+		return mainBtn.mnemonicParsingProperty();
 	}
 	
 	

@@ -7,6 +7,8 @@ import javafx.scene.layout.HBox;
 
 public class WindowDownMenuController  extends HBox{
 
+	
+	
 	public WindowDownMenuController() {
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("window_down_menu.fxml"));
@@ -21,6 +23,8 @@ public class WindowDownMenuController  extends HBox{
 			throw new RuntimeException(exception);
 		}
 	}
+
+	
 
 	
 }

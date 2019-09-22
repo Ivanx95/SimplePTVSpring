@@ -21,6 +21,7 @@ import one.main.model.Sale;
 import one.main.model.service.SaleService;
 import one.main.support.NeoJavaxApplicationSupport;
 import one.main.view.Dialog1View;
+import one.main.view.Dialog2View;
 
 @FXMLController
 public class PanelController  implements Initializable{

@@ -10,7 +10,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
+import javafx.stage.WindowEvent;
 import one.main.base.StageController;
 import one.main.view.Dialog1View;
 import one.main.view.custom.window.WindowDownButton;
@@ -23,13 +25,7 @@ public class Dialog2Controller extends StageController implements Initializable{
 	
 	@FXML
 	private WindowDownMenuController windowController;
-	
-	@FXML
-	private WindowDownButton btn1;
-	@FXML
-	private WindowDownButton btn2;
-	@FXML
-	private WindowDownButton btn3;
+
 	
 	@Autowired
 	Dialog1View view;
@@ -38,34 +34,32 @@ public class Dialog2Controller extends StageController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		WindowDownButton btn = new WindowDownButton();
 		
-		btn1.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				Dialog2Controller.this.close();
-				
-			}
-		});
+		btn.setImage(new Image(getClass().getResource("/images/add.png").toExternalForm()));
+		btn.setText(resources.getString("view.dialog2.menubtn.1"));
+//		windowController.addBtn(btn);
+//		
+//		windowController.getBtnExit().setOnAction(new EventHandler<ActionEvent>() {
+//			
+//			@Override
+//			public void handle(ActionEvent event) {
+//				Dialog2Controller.this.close();
+//				
+//			}
+//		});
+	}
+
+	@Override
+	public void onShow() {
+	
 		
-		btn2.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				System.err.println("Im a message");
-				
-			}
-		});
+	}
+
+	@Override
+	public void onSettingScene() {
+		// TODO Auto-generated method stub
 		
-		btn3.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				 StageController controlr=	view.createController(Modality.APPLICATION_MODAL);
-				 controlr.getStage().showAndWait();
-				 
-			}
-		});
 	}
 	
 	

@@ -4,6 +4,15 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  * <p> WARNING this package will be move to maven module </p>
  * @author storm
@@ -11,47 +20,74 @@ import java.time.LocalDateTime;
  */
 public class Sale {
 
-	private Long id;
+	private LongProperty id;
 	
-	private String client;
+	private StringProperty client;
 	
-	private String saler;
+	private StringProperty saler;
 	
-	private LocalDateTime time;
+	private ObjectProperty<LocalDateTime> time;
 	
-	private BigDecimal amount;
+	private DoubleProperty amount;
 
-	public String getClient() {
+	
+	public Sale(Long id, String client, String saler, LocalDateTime time, BigDecimal amount) {
+		this.id = new SimpleLongProperty(id);
+		this.client= new SimpleStringProperty(client);
+		this.saler = new SimpleStringProperty();
+		this.time= new SimpleObjectProperty<>(time);
+		this.amount= new SimpleDoubleProperty(amount.doubleValue());
+	}
+	public StringProperty getClient() {
 		return client;
 	}
 
 	public void setClient(String client) {
-		this.client = client;
+		this.client.set(client);
 	}
 
 	public String getSaler() {
-		return saler;
+		return saler.get();
 	}
 
 	public void setSaler(String saler) {
-		this.saler = saler;
+		this.saler.set(saler);
 	}
 
 	public LocalDateTime getTime() {
-		return time;
+		return time.get();
 	}
 
 	public void setTime(LocalDateTime time) {
-		this.time = time;
+		this.time.set(time);
 	}
 
-	public BigDecimal getAmount() {
-		return amount;
+	public Double getAmount() {
+		return amount.get();
 	}
 
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
+	public void setAmount(Double amount) {
+		this.amount.set(amount);
 	}
 	
+	public LongProperty getIdProperty() {
+		return this.id;
+	}
+	
+	public StringProperty getClientProperty() {
+		return this.client;
+	}
+	
+	public StringProperty getSalerProperty() {
+		return this.saler;
+	}
+	
+	public ObjectProperty<LocalDateTime> getTimeProperty(){
+		return this.time;
+	}
+	
+	public DoubleProperty getAmoutProperty() {
+		return this.amount;
+	}
 	
 }

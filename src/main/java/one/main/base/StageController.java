@@ -27,6 +27,10 @@ public abstract class StageController {
 	
 	Parent parent;
 
+	public abstract void onShow();
+	
+	public abstract void onSettingScene();
+	
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
@@ -55,6 +59,14 @@ public abstract class StageController {
 		}else {
 			
 		}
+	}
+
+	public Scene getScene() {
+		return scene;
+	}
+
+	public Parent getParent() {
+		return parent;
 	}
 	
 	

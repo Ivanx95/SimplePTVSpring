@@ -1,26 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import one.main.view.custom.TableVerticalController?>
 <?import one.main.view.custom.window.WindowDownButton?>
 <?import one.main.view.custom.window.WindowDownMenuController?>
 
 <!--<?import one.main.view.custom.WindowDownMenuController   ?>-->
 
-<VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="one.main.controller.Dialog1Controller">
+<VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="846.0" styleClass="background" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="one.main.controller.Dialog1Controller">
    <stylesheets>
       <URL value="@../styles/font-behaivior.fxml.css" />
       <URL value="@../styles/miverva.fxml.css" />
       <URL value="@../styles/black-behaivior.fxml.css" />
+      <URL value="@../styles/highlight.fxml.css" />
    </stylesheets>
    <children>
+      <VBox maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+         <children>
+            <HBox VBox.vgrow="ALWAYS">
+               <children>
+                  <TableVerticalController fx:id="tableController" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="298.0" prefWidth="599.0" HBox.hgrow="ALWAYS" />
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="381.0" prefWidth="126.0" styleClass="background" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="BOTTOM_LEFT" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="41.0" text="Total:" HBox.hgrow="ALWAYS">
+                                 <styleClass>
+                                    <String fx:value="is-bold" />
+                                    <String fx:value="is-15" />
+                                 </styleClass>
+                              </Label>
+                              <Label fx:id="totalLbl" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="40.0" styleClass="is-17" text="0.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
       <WindowDownMenuController id="windowController" fx:id="windowController">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <WindowDownButton fx:id="btn1" text="%view.dialog1.menubtn.salir">
+                  <WindowDownButton fx:id="btn1" mnemonicParsing="true" text="%view.dialog1.menubtn.salir">
                      <image>
                         <Image url="@../../../images/close.png" />
                      </image></WindowDownButton>
@@ -31,7 +66,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <WindowDownButton fx:id="btn2" text="%view.dialog1.menubtn.1">
+                  <WindowDownButton fx:id="btn2" mnemonicParsing="true" text="%view.dialog1.menubtn.1">
                      <image>
                         <Image url="@../../../images/add.png" />
                      </image></WindowDownButton>
@@ -42,7 +77,21 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <WindowDownButton fx:id="btn3" />
+                  <WindowDownButton fx:id="btnDelete" mnemonicParsing="true" text="%view.global.delete">
+                     <image>
+                        <Image url="@../../../images/delete.png" />
+                     </image></WindowDownButton>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <WindowDownButton fx:id="btnSave" mnemonicParsing="true" text="%view.global.save">
+                     <image>
+                        <Image url="@../../../images/save.png" />
+                     </image></WindowDownButton>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
