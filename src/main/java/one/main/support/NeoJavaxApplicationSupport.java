@@ -235,12 +235,6 @@ public abstract class NeoJavaxApplicationSupport extends Application {
 
         splashIsShowing.complete(() -> {
         	
-        	try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
             showInitialView();
             if (NeoJavaxApplicationSupport.splashScreen.visible()) {
                 splashStage.hide();
@@ -290,10 +284,8 @@ public abstract class NeoJavaxApplicationSupport extends Application {
             }
             GUIState.getStage().setScene(GUIState.getScene());
 
-            applyEnvPropsToView();
+            applyEnvPropsToView(GUIState.getStage());
 
-          
-            
           
             GUIState.getStage().getIcons().addAll(icons);
             GUIState.getStage().show();
@@ -317,21 +309,21 @@ public abstract class NeoJavaxApplicationSupport extends Application {
         alert.showAndWait().ifPresent(response -> Platform.exit());
     }
 
-    /**
+    /**TODO: Move to controller or {@link JavaFxView#createController(Modality)}
      * Apply env props to view.
      */
-    private static void applyEnvPropsToView() {
+    private  static void applyEnvPropsToView(Stage stage) {
         PropertyReaderHelper.setIfPresent(applicationContext.getEnvironment(), Constant.KEY_TITLE, String.class,
-                GUIState.getStage()::setTitle);
+                stage::setTitle);
 
         PropertyReaderHelper.setIfPresent(applicationContext.getEnvironment(), Constant.KEY_STAGE_WIDTH, Double.class,
-                GUIState.getStage()::setWidth);
+                stage::setWidth);
 
         PropertyReaderHelper.setIfPresent(applicationContext.getEnvironment(), Constant.KEY_STAGE_HEIGHT, Double.class,
-                GUIState.getStage()::setHeight);
+                stage::setHeight);
 
         PropertyReaderHelper.setIfPresent(applicationContext.getEnvironment(), Constant.KEY_STAGE_RESIZABLE, Boolean.class,
-                GUIState.getStage()::setResizable);
+                stage::setResizable);
     }
 
     /*

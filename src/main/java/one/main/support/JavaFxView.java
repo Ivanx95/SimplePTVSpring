@@ -473,7 +473,11 @@ public abstract class JavaFxView implements ApplicationContextAware {
 	        newStage.setScene(newScene);
 	        newStage.initModality(mode);
 	        newStage.initOwner(NeoJavaxApplicationSupport.getStage());
-	        newStage.setTitle(this.getDefaultTitle());
+	        if(this.bundle.isPresent()) {
+	        	String title =this.bundle.get().getString(this.getDefaultTitle());
+		        newStage.setTitle(title);
+	        }
+	        
 	        newStage.initStyle(this.getDefaultStyle());
 
 	        Object obj=  this.getPresenter();
@@ -491,5 +495,6 @@ public abstract class JavaFxView implements ApplicationContextAware {
 	        
 	       
 	    }
+
 
 }

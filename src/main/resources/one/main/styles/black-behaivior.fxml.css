@@ -4,6 +4,8 @@
     -fx-main-color-hovered: #f2f2f2;
     -fx-main-color-clicked: #e6e6e6;
     -fx-main-color-border: #4e4343;
+    -fx-main-color-title: #00bbff;
+    -fx-main-color-disabled: #cfcfcf;
     -fx-second-color:rgb(224, 224, 224);
     -fx-bkgnd:#fff;
   }
@@ -21,10 +23,12 @@
 
 .footer{
      -fx-background-color: -fx-second-color;  
-     -fx-effect: dropshadow(two-pass-box , rgb(180, 180, 180), 15, 0.0 , 0, -5);     
+     
 }
 
-
+.main:focused{
+	-fx-effect: dropshadow(two-pass-box , rgb(180, 180, 180), 10, 0.9 , 0, 0);     
+}
 
 .button{
    -fx-background-color: -fx-main-color;  
@@ -44,3 +48,11 @@
 .button.main:pressed{
     -fx-background-color: -fx-main-color-clicked; 
  }
+
+.button.main:disabled{
+	-fx-background-color:-fx-main-color-disabled;
+}
+
+.is-title{
+	-fx-text-fill:-fx-main-color-title;
+}

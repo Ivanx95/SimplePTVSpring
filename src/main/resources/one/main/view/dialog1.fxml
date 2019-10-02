@@ -25,8 +25,8 @@
          <children>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <TableVerticalController fx:id="tableController" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="298.0" prefWidth="599.0" HBox.hgrow="ALWAYS" />
-                  <VBox alignment="BOTTOM_CENTER" prefHeight="381.0" prefWidth="126.0" styleClass="background" HBox.hgrow="ALWAYS">
+                  <TableVerticalController fx:id="tableController" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" pageSize="10" prefHeight="418.0" prefWidth="480.0" HBox.hgrow="ALWAYS" />
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="381.0" prefWidth="126.0" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -51,11 +51,11 @@
             </HBox>
          </children>
       </VBox>
-      <WindowDownMenuController id="windowController" fx:id="windowController">
+      <WindowDownMenuController id="windowController" fx:id="windowController" alignment="CENTER_LEFT" prefHeight="112.0" prefWidth="844.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <WindowDownButton fx:id="btn1" mnemonicParsing="true" text="%view.dialog1.menubtn.salir">
+                  <WindowDownButton fx:id="btn1" alignment="CENTER" mnemonicParsing="true" text="%view.dialog1.menubtn.salir">
                      <image>
                         <Image url="@../../../images/close.png" />
                      </image></WindowDownButton>
@@ -64,9 +64,9 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <WindowDownButton fx:id="btn2" mnemonicParsing="true" text="%view.dialog1.menubtn.1">
+                  <WindowDownButton fx:id="btn2" alignment="CENTER" mnemonicParsing="true" text="%view.dialog1.menubtn.1">
                      <image>
                         <Image url="@../../../images/add.png" />
                      </image></WindowDownButton>
@@ -75,9 +75,9 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <WindowDownButton fx:id="btnDelete" mnemonicParsing="true" text="%view.global.delete">
+                  <WindowDownButton fx:id="btnDelete" alignment="CENTER" mnemonicParsing="true" text="%view.global.delete">
                      <image>
                         <Image url="@../../../images/delete.png" />
                      </image></WindowDownButton>
@@ -86,9 +86,9 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <WindowDownButton fx:id="btnSave" mnemonicParsing="true" text="%view.global.save">
+                  <WindowDownButton fx:id="btnSave" alignment="CENTER" mnemonicParsing="true" text="%view.global.save">
                      <image>
                         <Image url="@../../../images/save.png" />
                      </image></WindowDownButton>

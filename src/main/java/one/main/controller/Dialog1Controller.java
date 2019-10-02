@@ -1,7 +1,9 @@
 package one.main.controller;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.text.NumberFormat;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -9,6 +11,7 @@ import org.aspectj.weaver.patterns.BindingAnnotationFieldTypePattern;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import de.felixroske.jfxsupport.FXMLController;
+import de.felixroske.jfxsupport.PropertyReaderHelper;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.DoubleProperty;
@@ -23,6 +26,7 @@ import javafx.scene.control.Label;
 import one.main.controller.base.TouchScreenController;
 import one.main.model.Sale;
 import one.main.model.service.SaleService;
+import one.main.support.Constant;
 import one.main.support.WindowTransactionalMenuController;
 import one.main.view.Dialog2View;
 import one.main.view.custom.TableVerticalController;
@@ -47,7 +51,7 @@ public class Dialog1Controller extends TouchScreenController {
 	@FXML
 	private WindowDownButton btnDelete;
 	
-
+	private int count=0;
 	@FXML
 	private Label totalLbl;
 	
@@ -75,6 +79,9 @@ public class Dialog1Controller extends TouchScreenController {
 	
 		
 		
+		
+                
+		
 		btn1.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
@@ -88,28 +95,32 @@ public class Dialog1Controller extends TouchScreenController {
 			
 			@Override
 			public void handle(ActionEvent event) {
+				 Sale sale=new Sale(10L, "Ivan"+count, "Yuni", LocalDateTime.now(), new BigDecimal(100));
 				
-				Dialog1Controller.this.saleData.add(saleService.create());
+				count++;
+				Dialog1Controller.this.tableController.getData().add(sale);
 				
 			}
 		});
 		
 		tableController.getIdColumn().setCellValueFactory(cellData-> cellData.getValue().getClientProperty());
 		
-		tableController.getTable().setItems(saleData);
+		
 		
 		btnDelete.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
 				Sale selectedSale = tableController.getTable().getSelectionModel().getSelectedItem();
-				saleData.remove(selectedSale);
+				tableController.getData().remove(selectedSale);
 			}
 		});
 		
 		total2 = Bindings.createDoubleBinding(() -> 
-		tableController.getTable().getItems().stream().collect(Collectors.summingDouble(Sale::getAmount)),
-		tableController.getTable().getItems());
+		tableController.getData().stream().collect(Collectors.summingDouble(Sale::getAmount)),
+		tableController.getData());
+		
+		tableController.setTableTitle(resources.getString("view.dialog1.table1.title"));
 		
 		totalLbl.textProperty().bind(Bindings.createStringBinding(
 		        () -> total2.getValue() == null 
@@ -117,14 +128,14 @@ public class Dialog1Controller extends TouchScreenController {
 	              : currencyFormat.format(total2.getValue().doubleValue()),         
 	              total2));
 		
-		
+		this.tableController.getTable().setPlaceholder(new Label(resources.getString("view.global.emptyTable")));
 		
 	}
 
 	@Override
 	public void onShow() {
 		
-		 saleData.clear();
+		
 		 super.onShow();
 	}
 
@@ -132,6 +143,12 @@ public class Dialog1Controller extends TouchScreenController {
 	public void onSettingScene() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	protected void close() {
+		 tableController.getData().clear();
+		super.close();
 	}
 	
 	

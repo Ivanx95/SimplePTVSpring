@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.event.ActionEvent;
@@ -37,6 +38,9 @@ public class PanelController  implements Initializable{
 	
 	@FXML
 	MenuItem newButton;
+	
+	@Value("${one.main.payment.test}")
+	private String testInject;
 
 
 	public  PanelController() {
@@ -48,6 +52,7 @@ public class PanelController  implements Initializable{
 		// TODO Auto-generated method stub
 	
 		newButton.setOnAction(e->{
+		System.err.println(testInject);
 		 StageController controlr=	view.createController(Modality.APPLICATION_MODAL);
 		 controlr.getStage().showAndWait();
 		 

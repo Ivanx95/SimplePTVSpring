@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root type="VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root styleClass="windowButton" stylesheets="@../resources/one/main/styles/miverva.fxml.css" type="VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="mainBtn" mnemonicParsing="false" prefHeight="90.0" prefWidth="14.0" styleClass="main">
          <graphic>

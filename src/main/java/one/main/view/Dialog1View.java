@@ -9,7 +9,7 @@ import one.main.components.aop.LogExecutionTime;
 import one.main.support.JavaFxView;
 
 @Qualifier("popUp1")
-@FXMLView( bundle="one.main.i18n.message", stageStyle = "UNDECORATED")
+@FXMLView( bundle="one.main.i18n.message", stageStyle = "UNDECORATED", title="view.dialog1.title")
 public class Dialog1View extends JavaFxView{
 
 	public Dialog1View(String string) {

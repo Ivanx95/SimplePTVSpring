@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.VBox?>
-<?import one.main.view.custom.window.WindowDownButton?>
-<?import one.main.view.custom.window.WindowDownMenuController?>
 
 <!--<?import one.main.view.custom.WindowDownMenuController   ?>-->
 
@@ -15,8 +11,8 @@
       <URL value="@../styles/miverva.fxml.css" />
       <URL value="@../styles/black-behaivior.fxml.css" />
    </stylesheets>
-   <children>
-      <WindowDownMenuController id="windowController" fx:id="windowController">
+    <!--<children>
+     <WindowDownMenuController id="windowController" fx:id="windowController">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
@@ -50,7 +46,8 @@
             </VBox>
          </children>
       </WindowDownMenuController>
-   </children>
+   </children>-->
+   
    <!--<children>
      	<WindowDownMenuController/>
    </children>-->
