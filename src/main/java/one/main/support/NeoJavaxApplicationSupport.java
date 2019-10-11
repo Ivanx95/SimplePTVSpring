@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import one.main.base.StageController;
 import one.main.config.AppConfig;
+import one.main.config.JPAConfig;
 import one.main.config.SettingsConfig;
 
 import org.slf4j.Logger;
@@ -182,7 +183,7 @@ public abstract class NeoJavaxApplicationSupport extends Application {
         defaultIcons.addAll(loadDefaultIcons());
         CompletableFuture.supplyAsync(() ->{
            
-        	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class, SettingsConfig.class);
+        	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class, SettingsConfig.class, JPAConfig.class);
         	
         	return context;
         }

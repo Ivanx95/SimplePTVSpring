@@ -18,6 +18,7 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import one.main.base.StageController;
 import one.main.components.PayMethodController;
+import one.main.components.aop.LogExecutionTime;
 import one.main.model.Sale;
 import one.main.model.service.SaleService;
 import one.main.support.NeoJavaxApplicationSupport;
@@ -44,7 +45,7 @@ public class PanelController  implements Initializable{
 
 
 	public  PanelController() {
-		System.err.println("Created");
+		
 	}
 
 	@Override
@@ -52,11 +53,16 @@ public class PanelController  implements Initializable{
 		// TODO Auto-generated method stub
 	
 		newButton.setOnAction(e->{
+			newWindow();
+		});
+	}
+	
+	
+	public void newWindow() {
 		System.err.println(testInject);
 		 StageController controlr=	view.createController(Modality.APPLICATION_MODAL);
 		 controlr.getStage().showAndWait();
 		 
-		});
 	}
 	
 }

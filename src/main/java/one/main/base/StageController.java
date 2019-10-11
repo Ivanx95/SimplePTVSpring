@@ -1,5 +1,6 @@
 package one.main.base;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.function.Consumer;
@@ -27,6 +28,7 @@ public abstract class StageController {
 	
 	Parent parent;
 
+	List<String> methodProxy;
 	public abstract void onShow();
 	
 	public abstract void onSettingScene();
@@ -41,6 +43,7 @@ public abstract class StageController {
 		this.scene = scene;
 	}
 
+	
 
 
 	public void setParent(Parent parent) {

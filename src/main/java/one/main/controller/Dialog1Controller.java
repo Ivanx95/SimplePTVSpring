@@ -1,5 +1,7 @@
 package one.main.controller;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.text.NumberFormat;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import de.felixroske.jfxsupport.FXMLController;
 import de.felixroske.jfxsupport.PropertyReaderHelper;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.DoubleProperty;
@@ -22,9 +25,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.stage.StageStyle;
+import javafx.scene.control.Alert.AlertType;
+import one.main.components.aop.LogExecutionTime;
 import one.main.controller.base.TouchScreenController;
 import one.main.model.Sale;
+import one.main.model.User;
+import one.main.model.repository.UserRepository;
 import one.main.model.service.SaleService;
 import one.main.support.Constant;
 import one.main.support.WindowTransactionalMenuController;
@@ -60,16 +72,15 @@ public class Dialog1Controller extends TouchScreenController {
 	
 	private ObservableList<Sale> saleData = FXCollections.observableArrayList();
 	
-	private DoubleProperty total = new SimpleDoubleProperty();
 	
 	private NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
 	
 	@Autowired
 	Dialog2View view;
-	
-	@Autowired
-	private SaleService saleService;
 
+	@Autowired
+	private UserRepository userRepository;
+	
 	private DoubleBinding total2;
 	
 	@FXML
@@ -77,10 +88,6 @@ public class Dialog1Controller extends TouchScreenController {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 	
-		
-		
-		
-                
 		
 		btn1.setOnAction(new EventHandler<ActionEvent>() {
 			
@@ -95,14 +102,22 @@ public class Dialog1Controller extends TouchScreenController {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				 Sale sale=new Sale(10L, "Ivan"+count, "Yuni", LocalDateTime.now(), new BigDecimal(100));
-				
-				count++;
-				Dialog1Controller.this.tableController.getData().add(sale);
+				onAddItem();
 				
 			}
 		});
 		
+//		btn3.setOnAction(new EventHandler<ActionEvent>() {
+//			
+//			@Override
+//			public void handle(ActionEvent event) {
+//				User aux = new User();
+//				aux.setPassword("123456");
+//				aux.setUser("Pancho");
+//				userRepository.save(aux);
+//				
+//			}
+//		});
 		tableController.getIdColumn().setCellValueFactory(cellData-> cellData.getValue().getClientProperty());
 		
 		
@@ -151,7 +166,56 @@ public class Dialog1Controller extends TouchScreenController {
 		super.close();
 	}
 	
-	
+//	@LogExecutionTime
+	private void onAddItem() {
+		 
+			try {
+				Sale sale=new Sale(10L, "Ivan"+count, "Yuni", LocalDateTime.now(), new BigDecimal(100));
+				
+				count++;
+				Dialog1Controller.this.tableController.getData().add(sale);
+				
+				User aux = new User();
+				aux.setPassword("123456");
+				aux.setUser("Pancho");
+				userRepository.save(aux);
+			} catch (Exception e) {
+				// TODO: handle exception
+				
+				Alert alert = new Alert(AlertType.ERROR);
+//				alert.setTitle("Ha sucedido un error");
+				alert.setHeaderText("Codigo de error: ");
+				alert.setContentText("Ha sucedido un error, para mas información favor de comunicarse a: ");
+				alert.initStyle(StageStyle.UNDECORATED);
+				// Create expandable Exception.
+				StringWriter sw = new StringWriter();
+				PrintWriter pw = new PrintWriter(sw);
+				e.printStackTrace(pw);
+				String exceptionText = sw.toString();
+
+				Label label = new Label("The exception stacktrace was:");
+
+				TextArea textArea = new TextArea(exceptionText);
+				textArea.setEditable(false);
+				textArea.setWrapText(true);
+
+				textArea.setMaxWidth(Double.MAX_VALUE);
+				textArea.setMaxHeight(Double.MAX_VALUE);
+				GridPane.setVgrow(textArea, Priority.ALWAYS);
+				GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+				GridPane expContent = new GridPane();
+				expContent.setMaxWidth(Double.MAX_VALUE);
+				expContent.add(label, 0, 0);
+				expContent.add(textArea, 0, 1);
+
+				// Set expandable Exception into the dialog pane.
+				alert.getDialogPane().setExpandableContent(expContent);
+
+				 Platform.runLater(()->alert.showAndWait());
+			}
+			
+	}
 	
 }
 

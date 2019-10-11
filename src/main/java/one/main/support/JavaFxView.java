@@ -134,8 +134,8 @@ public abstract class JavaFxView implements ApplicationContextAware {
 		if(this.subController!=null) {
 			return this.applicationContext.getBean(subController);
 		}
-		
-		return applicationContext.getBean(type);
+		Object result =applicationContext.getBean(type);
+		return  result;
 	}
 
 	/*

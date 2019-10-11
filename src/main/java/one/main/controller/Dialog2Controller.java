@@ -38,16 +38,6 @@ public class Dialog2Controller extends StageController implements Initializable{
 		
 		btn.setImage(new Image(getClass().getResource("/images/add.png").toExternalForm()));
 		btn.setText(resources.getString("view.dialog2.menubtn.1"));
-//		windowController.addBtn(btn);
-//		
-//		windowController.getBtnExit().setOnAction(new EventHandler<ActionEvent>() {
-//			
-//			@Override
-//			public void handle(ActionEvent event) {
-//				Dialog2Controller.this.close();
-//				
-//			}
-//		});
 	}
 
 	@Override
