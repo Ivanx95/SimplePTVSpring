@@ -8,9 +8,11 @@ import one.main.base.StageController;
 import one.main.components.PayMethodController;
 import one.main.controller.Dialog1Controller;
 import one.main.controller.Dialog2Controller;
+import one.main.controller.LoginController;
 import one.main.controller.PanelController;
 import one.main.view.Dialog1View;
 import one.main.view.Dialog2View;
+import one.main.view.LoginView;
 import one.main.view.PanelView;
 
 @Configuration
@@ -26,6 +28,11 @@ public class AppConfig {
 	@Bean
 	public Dialog1View getPopUp1() {
 		return new Dialog1View("popUp1");
+	}
+	
+	@Bean
+	public LoginView getLoginView() {
+		return new LoginView();
 	}
 	
 	@Bean
@@ -51,6 +58,10 @@ public class AppConfig {
 		return new Dialog2Controller();
 	}
 	
+	@Bean
+	public LoginController loginController() {
+		return new LoginController();
+	}
 	
 	
 }

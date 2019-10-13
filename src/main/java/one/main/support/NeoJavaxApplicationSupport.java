@@ -17,6 +17,7 @@ import one.main.base.StageController;
 import one.main.config.AppConfig;
 import one.main.config.JPAConfig;
 import one.main.config.SettingsConfig;
+import one.main.controller.base.AlertBuilder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -303,10 +304,7 @@ public abstract class NeoJavaxApplicationSupport extends Application {
      * @param throwable cause of error
      */
     private static void showErrorAlert(Throwable throwable) {
-        Alert alert = new Alert(AlertType.ERROR, "Oops! An unrecoverable error occurred.\n" +
-                "Please contact your software vendor.\n\n" +
-                "The application will stop now.\n\n" + 
-                "Error: " + throwable.getMessage());
+        Alert alert =  AlertBuilder.createAlertExceptionWaning(throwable);
         alert.showAndWait().ifPresent(response -> Platform.exit());
     }
 

@@ -19,7 +19,7 @@ import javafx.stage.Modality;
 import one.main.base.StageController;
 import one.main.components.PayMethodController;
 import one.main.components.aop.LogExecutionTime;
-import one.main.model.Sale;
+import one.main.jfx.model.SaleFX;
 import one.main.model.service.SaleService;
 import one.main.support.NeoJavaxApplicationSupport;
 import one.main.view.Dialog1View;
@@ -60,7 +60,7 @@ public class PanelController  implements Initializable{
 	
 	public void newWindow() {
 		System.err.println(testInject);
-		 StageController controlr=	view.createController(Modality.APPLICATION_MODAL);
+		 StageController controlr=	view.createControllerFullScreen(Modality.APPLICATION_MODAL);
 		 controlr.getStage().showAndWait();
 		 
 	}

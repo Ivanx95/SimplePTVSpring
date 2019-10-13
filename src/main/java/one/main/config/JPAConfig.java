@@ -18,6 +18,9 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import one.main.model.service.UserService;
+import one.main.model.service.impl.UserServiceImpl;
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories("one.main.model.repository")
@@ -42,7 +45,7 @@ public class JPAConfig {
 
 	private Properties additionalProperties() {
 		Properties properties = new Properties();
-	    properties.setProperty("hibernate.hbm2ddl.auto", "none");
+	    properties.setProperty("hibernate.hbm2ddl.auto", "update");
 	    properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 	        
 	    return properties;
@@ -62,10 +65,15 @@ public class JPAConfig {
 	}
 	
 	@Bean
+	public UserService userService(){
+		
+		return new UserServiceImpl();
+	}
+	@Bean
 	public DataSource dataSource(){
 	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
 	    dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-	    dataSource.setUrl("jdbc:mysql://localhost:3306/tpv");
+	    dataSource.setUrl("jdbc:mysql://localhost:3306/tpv?serverTimezone=UTC");
 	    dataSource.setUsername( "root" );
 	    dataSource.setPassword( "jaisen95" );
 	    return dataSource;

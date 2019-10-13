@@ -2,12 +2,22 @@
 * {
     -fx-main-color: white;
     -fx-main-color-hovered: #f2f2f2;
-    -fx-main-color-clicked: #e6e6e6;
+    -fx-main-color-clicked: #d4d4d4;
     -fx-main-color-border: #4e4343;
     -fx-main-color-title: #00bbff;
     -fx-main-color-disabled: #cfcfcf;
     -fx-second-color:rgb(224, 224, 224);
     -fx-bkgnd:#fff;
+
+	-fx-transactional-main-color: linear-gradient(to top right, #e861b0, #c4438e);
+	-fx-transactional-main-color-hover: linear-gradient(to top right, #d1569f, #b53881);
+	-fx-transactional-main-color-clicked: linear-gradient(to top right, #bf478d, #a12b70);
+
+    -fx-table-title-main-color:#0c1936;
+    -fx-table-main-color: linear-gradient(#ffffff, #f0f0f0);
+    -fx-table-main-color-hover: linear-gradient(#fdfdfd, #e3e3e3);
+	-fx-title-window:  linear-gradient(to top right, #e861b0, #c4438e);
+
   }
 
   
@@ -55,4 +65,50 @@
 
 .is-title{
 	-fx-text-fill:-fx-main-color-title;
+}
+
+
+.table-view .column-header .label{
+    
+    -fx-text-fill:  -fx-table-title-main-color;
+}
+
+.table-view .column-header:hover {
+    -fx-background-color: -fx-table-main-color-hover;
+}
+
+.table-view .column-header {
+    -fx-background-color: -fx-table-main-color;
+}
+
+.table-view .filler {
+	-fx-background-color: -fx-table-main-color;
+}
+
+.window-title{
+	-fx-background-color: -fx-title-window;	
+}
+
+.window-title .label{
+	 -fx-text-fill: #fff;	
+}
+
+.transactional-button{
+	-fx-background-color: -fx-transactional-main-color;
+}
+
+
+
+.transactional-button:hover{
+    -fx-background-color: -fx-transactional-main-color-hover; 
+ }
+
+
+.transactional-button:pressed{
+	-fx-background-color: -fx-transactional-main-color-clicked;
+}
+
+
+.form{
+	-fx-background-color: white;
 }

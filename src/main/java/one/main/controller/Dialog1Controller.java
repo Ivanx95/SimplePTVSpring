@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -27,14 +29,19 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.StageStyle;
 import javafx.scene.control.Alert.AlertType;
 import one.main.components.aop.LogExecutionTime;
+import one.main.controller.base.AlertBuilder;
 import one.main.controller.base.TouchScreenController;
+import one.main.jfx.model.SaleFX;
+import one.main.jfx.model.SaleItemFX;
 import one.main.model.Sale;
+import one.main.model.SaleItem;
 import one.main.model.User;
 import one.main.model.repository.UserRepository;
 import one.main.model.service.SaleService;
@@ -68,9 +75,9 @@ public class Dialog1Controller extends TouchScreenController {
 	private Label totalLbl;
 	
 	@FXML
-	private TableVerticalController<Sale, String> tableController;
+	private TableVerticalController<SaleItemFX, Number> tableController;
 	
-	private ObservableList<Sale> saleData = FXCollections.observableArrayList();
+	private ObservableList<SaleItemFX> saleData = FXCollections.observableArrayList();
 	
 	
 	private NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
@@ -82,12 +89,17 @@ public class Dialog1Controller extends TouchScreenController {
 	private UserRepository userRepository;
 	
 	private DoubleBinding total2;
+
+	private Sale sale;
 	
 	@FXML
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
 	
+		this.setBundle(resources);
+		
+		
 		
 		btn1.setOnAction(new EventHandler<ActionEvent>() {
 			
@@ -118,21 +130,21 @@ public class Dialog1Controller extends TouchScreenController {
 //				
 //			}
 //		});
-		tableController.getIdColumn().setCellValueFactory(cellData-> cellData.getValue().getClientProperty());
+		tableController.getIdColumn().setCellValueFactory(cellData-> cellData.getValue().getIdProperty());
 		
 		
-		
+		tableController.getTable().getColumns().addAll(configureColumns());
 		btnDelete.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				Sale selectedSale = tableController.getTable().getSelectionModel().getSelectedItem();
+				SaleItemFX selectedSale = tableController.getTable().getSelectionModel().getSelectedItem();
 				tableController.getData().remove(selectedSale);
 			}
 		});
 		
 		total2 = Bindings.createDoubleBinding(() -> 
-		tableController.getData().stream().collect(Collectors.summingDouble(Sale::getAmount)),
+		tableController.getData().stream().collect(Collectors.summingDouble(SaleItemFX::getAmount)),
 		tableController.getData());
 		
 		tableController.setTableTitle(resources.getString("view.dialog1.table1.title"));
@@ -147,6 +159,42 @@ public class Dialog1Controller extends TouchScreenController {
 		
 	}
 
+	private List<TableColumn<SaleItemFX, ?>> configureColumns(){
+		
+		List<TableColumn<SaleItemFX, ?>>colums = new ArrayList<>();
+		
+		TableColumn<SaleItemFX, String> descColumn = new TableColumn<>();
+		
+		descColumn.setCellValueFactory(cellData-> cellData.getValue().getDescriptionProperty());
+		descColumn.setText(this.getBundle().getString("view.dialog1.table1.amount"));
+		
+		colums.add(descColumn);
+		
+		TableColumn<SaleItemFX, Number> quantityColumn = new TableColumn<>();
+		
+		quantityColumn.setCellValueFactory(cellData-> cellData.getValue().getQuantityProperty());
+		quantityColumn.setText(this.getBundle().getString("view.dialog1.table1.quantity"));
+		
+		TableColumn<SaleItemFX, Number> unitPriceColumn = new TableColumn<>();
+		
+		unitPriceColumn.setCellValueFactory(cellData-> cellData.getValue().getUnitPriceProperty());
+		unitPriceColumn.setText(this.getBundle().getString("view.dialog1.table1.unitPrice"));
+		
+		TableColumn<SaleItemFX, Number> amountColumn = new TableColumn<>();
+		
+		amountColumn.setCellValueFactory(cellData-> cellData.getValue().getAmountProperty());
+		amountColumn.setText(this.getBundle().getString("view.dialog1.table1.amount"));
+		
+		
+		colums.add(quantityColumn);
+		
+		colums.add(unitPriceColumn);
+		
+		colums.add(amountColumn);
+		
+		return colums;
+		
+	}
 	@Override
 	public void onShow() {
 		
@@ -170,48 +218,15 @@ public class Dialog1Controller extends TouchScreenController {
 	private void onAddItem() {
 		 
 			try {
-				Sale sale=new Sale(10L, "Ivan"+count, "Yuni", LocalDateTime.now(), new BigDecimal(100));
+				SaleItemFX sale = new SaleItemFX(1L, "Maruchan", BigDecimal.ONE, BigDecimal.TEN,  BigDecimal.TEN,  BigDecimal.ZERO);
 				
-				count++;
-				Dialog1Controller.this.tableController.getData().add(sale);
-				
-				User aux = new User();
-				aux.setPassword("123456");
-				aux.setUser("Pancho");
-				userRepository.save(aux);
+				tableController.getData().add(sale);
 			} catch (Exception e) {
 				// TODO: handle exception
 				
-				Alert alert = new Alert(AlertType.ERROR);
-//				alert.setTitle("Ha sucedido un error");
-				alert.setHeaderText("Codigo de error: ");
-				alert.setContentText("Ha sucedido un error, para mas información favor de comunicarse a: ");
-				alert.initStyle(StageStyle.UNDECORATED);
-				// Create expandable Exception.
-				StringWriter sw = new StringWriter();
-				PrintWriter pw = new PrintWriter(sw);
-				e.printStackTrace(pw);
-				String exceptionText = sw.toString();
-
-				Label label = new Label("The exception stacktrace was:");
-
-				TextArea textArea = new TextArea(exceptionText);
-				textArea.setEditable(false);
-				textArea.setWrapText(true);
-
-				textArea.setMaxWidth(Double.MAX_VALUE);
-				textArea.setMaxHeight(Double.MAX_VALUE);
-				GridPane.setVgrow(textArea, Priority.ALWAYS);
-				GridPane.setHgrow(textArea, Priority.ALWAYS);
-
-				GridPane expContent = new GridPane();
-				expContent.setMaxWidth(Double.MAX_VALUE);
-				expContent.add(label, 0, 0);
-				expContent.add(textArea, 0, 1);
-
-				// Set expandable Exception into the dialog pane.
-				alert.getDialogPane().setExpandableContent(expContent);
-
+			
+				Alert alert=AlertBuilder.createAlertExceptionWaning(e);
+				
 				 Platform.runLater(()->alert.showAndWait());
 			}
 			
@@ -220,3 +235,4 @@ public class Dialog1Controller extends TouchScreenController {
 }
 
 	
+

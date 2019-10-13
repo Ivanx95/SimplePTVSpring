@@ -1,6 +1,8 @@
 package one.main.base;
 
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.function.Consumer;
@@ -11,6 +13,8 @@ import org.springframework.context.annotation.Scope;
 
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
@@ -20,7 +24,7 @@ import one.main.support.NeoJavaxApplicationSupport;
 
 @FXMLController
 @Scope("prototype")
-public abstract class StageController {
+public abstract class StageController implements Initializable{
 
 	Stage stage;
 
@@ -38,6 +42,7 @@ public abstract class StageController {
 	}
 
 
+	private ResourceBundle bundle;
 
 	public void setScene(Scene scene) {
 		this.scene = scene;
@@ -71,8 +76,22 @@ public abstract class StageController {
 	public Parent getParent() {
 		return parent;
 	}
+
+	public ResourceBundle getBundle() {
+		return bundle;
+	}
+
+	public void setBundle(ResourceBundle bundle) {
+		this.bundle = bundle;
+	}
 	
+	@FXML
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		
 	
+		this.setBundle(resources);
+	}
 	
 	
 	

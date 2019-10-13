@@ -18,9 +18,9 @@ public class Dialog1View extends JavaFxView{
 
 	@Override
 	@LogExecutionTime
-	public StageController createController(Modality mode) {
+	public StageController createControllerFullScreen(Modality mode) {
 		// TODO Auto-generated method stub
-		return super.createController(mode);
+		return super.createControllerFullScreen(mode);
 	}
 	
 	

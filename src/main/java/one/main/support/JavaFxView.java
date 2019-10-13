@@ -458,6 +458,46 @@ public abstract class JavaFxView implements ApplicationContextAware {
 				+ resource + ", fxmlRoot=" + fxmlRoot + "]";
 	}
 	
+	public  StageController createControllerFullScreen( final Modality mode) {
+        Stage newStage = new Stage();
+
+        Scene newScene;
+        if (this.getView().getScene() != null) {
+            // This view was already shown so
+            // we have a scene for it and use this one.
+            newScene = this.getView().getScene();
+        } else {
+            newScene = new Scene(this.getView());
+        }
+
+        newStage.setScene(newScene);
+        newStage.initModality(mode);
+        newStage.setFullScreen(true);
+        newStage.initOwner(NeoJavaxApplicationSupport.getStage());
+        if(this.bundle.isPresent()) {
+        	String title =this.bundle.get().getString(this.getDefaultTitle());
+	        newStage.setTitle(title);
+        }
+        
+        newStage.initStyle(this.getDefaultStyle());
+
+        Object obj=  this.getPresenter();
+       
+        if(obj instanceof StageController) {
+        	StageController controller=((StageController)obj);
+        	controller.setStage(newStage);
+        	controller.setScene(newScene);
+        	controller.onShow();
+			return controller;
+			
+		}else {
+			throw new IllegalStateException("Not stage controller");
+		}
+        
+       
+    }
+
+	
 	 public  StageController createController( final Modality mode) {
 	        Stage newStage = new Stage();
 
