@@ -38,6 +38,7 @@ import javafx.scene.control.Alert.AlertType;
 import one.main.components.aop.LogExecutionTime;
 import one.main.controller.base.AlertBuilder;
 import one.main.controller.base.TouchScreenController;
+import one.main.events.ForceCloseEvent;
 import one.main.jfx.model.SaleFX;
 import one.main.jfx.model.SaleItemFX;
 import one.main.model.Sale;
@@ -70,7 +71,6 @@ public class Dialog1Controller extends TouchScreenController {
 	@FXML
 	private WindowDownButton btnDelete;
 	
-	private int count=0;
 	@FXML
 	private Label totalLbl;
 	
@@ -115,6 +115,7 @@ public class Dialog1Controller extends TouchScreenController {
 			@Override
 			public void handle(ActionEvent event) {
 				onAddItem();
+//				 
 				
 			}
 		});
@@ -231,6 +232,8 @@ public class Dialog1Controller extends TouchScreenController {
 			}
 			
 	}
+	
+	
 	
 }
 

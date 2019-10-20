@@ -8,7 +8,7 @@
     -fx-main-color-disabled: #cfcfcf;
     -fx-second-color:rgb(224, 224, 224);
     -fx-bkgnd:#fff;
-
+	-fx-virtual-keyboard-button-color:rgb(235, 235, 235);
 	-fx-transactional-main-color: linear-gradient(to top right, #e861b0, #c4438e);
 	-fx-transactional-main-color-hover: linear-gradient(to top right, #d1569f, #b53881);
 	-fx-transactional-main-color-clicked: linear-gradient(to top right, #bf478d, #a12b70);
@@ -28,6 +28,7 @@
    -fx-background-color:-fx-bkgnd;     
    -fx-border-color: -fx-main-color-border;
 }
+
 
 
 
@@ -111,4 +112,30 @@
 
 .form{
 	-fx-background-color: white;
+}
+
+
+
+VirtualKeyBoardLayout {
+	 -fx-background-color: -fx-main-color;
+	 -fx-effect: dropshadow(two-pass-box , rgb(180, 180, 180), 15, 0.0 , 0, 0);     
+	 -fx-border-radius: 10px;
+	 -fx-background-radius: 10px;
+}
+
+
+VirtualKeyBoardLayout .button {
+	-fx-background-color:  -fx-virtual-keyboard-button-color;
+}
+VirtualKeyBoardLayout .button:pressed{
+	-fx-background-color: -fx-main-color-clicked;
+}
+
+
+VirtualKeyBoardLayout ToggleButton {
+	-fx-background-color:  -fx-virtual-keyboard-button-color;
+}
+
+VirtualKeyBoardLayout ToggleButton:pressed{
+	-fx-background-color: -fx-main-color-clicked;
 }

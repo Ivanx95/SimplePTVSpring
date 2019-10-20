@@ -9,6 +9,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Scope;
 
 import de.felixroske.jfxsupport.FXMLController;
@@ -32,6 +33,9 @@ public abstract class StageController implements Initializable{
 	
 	Parent parent;
 
+	 @Autowired
+	 protected ApplicationEventPublisher applicationEventPublisher;
+	 
 	List<String> methodProxy;
 	public abstract void onShow();
 	
@@ -94,7 +98,9 @@ public abstract class StageController implements Initializable{
 	}
 	
 	
-	
+	protected void onForceClose() {
+		this.getStage().close();
+	}
 	
 	
 	

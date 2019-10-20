@@ -231,6 +231,7 @@ public abstract class NeoJavaxApplicationSupport extends Application {
 			splashStage.setScene(splashScene);
             splashStage.getIcons().addAll(defaultIcons);
             splashStage.initStyle(StageStyle.TRANSPARENT);
+            splashStage.setTitle("SimplePTV");
             beforeShowingSplash(splashStage);
             splashStage.show();
 		}
@@ -284,6 +285,10 @@ public abstract class NeoJavaxApplicationSupport extends Application {
             } else {
                 GUIState.getScene().setRoot(view.getView());
             }
+            
+            Object obj=  view.getPresenter();
+            
+            
             GUIState.getStage().setScene(GUIState.getScene());
 
             applyEnvPropsToView(GUIState.getStage());
